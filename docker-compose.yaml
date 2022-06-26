@@ -1,8 +1,29 @@
 version: '3'
+
 services:
-  web:
+  api:
+    container_name: api
     build: ./api
     ports:
-     - "3000:3000"
+      - 3000:3000
+  db:
+    container_name: db
+    image: mysql:8.0
+    # build: ./db
+    ports:
+      - 3306:3306
+    tty: true
+    env_file:
+      - ./db/.env
+    volumes:
+      - type: volume
+        source: mysql-data
+        target: /var/lib/mysql
+      - type: bind
+        source: ./db/init
+        target: /docker-entrypoint-initdb.d
 
+volumes:
+  mysql-data:
+    name: mysql-volume
 
