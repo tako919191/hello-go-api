@@ -6,10 +6,11 @@ services:
     build: ./api
     ports:
       - 3000:3000
+    depends_on:
+      - db
   db:
     container_name: db
     image: mysql:8.0
-    # build: ./db
     ports:
       - 3306:3306
     tty: true
