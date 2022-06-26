@@ -22,5 +22,5 @@ ENV ROOT=/go/src/app
 WORKDIR ${ROOT}
 COPY --from=builder ${ROOT}/binary ${ROOT}
 
-EXPOSE 1323
+EXPOSE 3000
 CMD ["/go/src/app/binary"]

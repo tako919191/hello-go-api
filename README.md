@@ -9,13 +9,13 @@ Golang の API 練習
 ### Build (on Local)
 
 ```sh
-$ ./build.sh
+$ ./api/build.sh
 ```
 
 ### Build (on Minikube)
 
 ```sh
-$ ./build.sh minikube
+$ ./api/build.sh minikube
 ```
 
 
