@@ -6,6 +6,12 @@ Golang の API 練習
 
 ## Usage
 
+### Docker Compose
+
+```sh
+$ docker compose up -d
+```
+
 ### Build (on Local)
 
 ```sh

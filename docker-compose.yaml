@@ -6,6 +6,8 @@ services:
     build: ./api
     ports:
       - 3000:3000
+    env_file:
+      - ./api/.env
     depends_on:
       - db
   db:
