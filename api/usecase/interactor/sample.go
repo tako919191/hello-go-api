@@ -1,8 +1,10 @@
 package interactor
 
 import (
-	"context"
 	"hello-go-api/usecase/port"
+	"log"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Sample struct {
@@ -10,18 +12,22 @@ type Sample struct {
 	SampleRepo port.SampleRepository
 }
 
-func NewSanpleInputPort(outputPort port.SampleOutputPort, sampleRepository port.SampleRepository) port.SampleInputPort {
+func NewSampleInputPort(o port.SampleOutputPort, r port.SampleRepository) port.SampleInputPort {
+	log.Println("interactor:NewSampleInputPort: entry.")
 	return &Sample{
-		OutputPort: outputPort,
-		SampleRepo: sampleRepository,
+		OutputPort: o,
+		SampleRepo: r,
 	}
 }
 
-func (s *Sample) GetSampleById(ctx context.Context, sampleId int) {
-	sample, err := s.SampleRepo.GetSampleById(ctx, sampleId)
+func (s *Sample) GetSampleById(c *gin.Context, sampleId int) {
+	log.Println("interactor:GetSampleById: entry.")
+	sample, err := s.SampleRepo.GetSampleById(c, sampleId)
 	if err != nil {
 		s.OutputPort.RenderError(err)
 		return
+	} else {
+		log.Printf("interactor:GetSampleById: sample found. Id: %d, Name: %s", sample.Id, sample.Name)
 	}
 	s.OutputPort.Render(sample)
 }

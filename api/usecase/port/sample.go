@@ -1,12 +1,13 @@
 package port
 
 import (
-	"context"
 	"hello-go-api/entity"
+
+	"github.com/gin-gonic/gin"
 )
 
 type SampleInputPort interface {
-	GetSampleById(ctx context.Context, sampleId int)
+	GetSampleById(c *gin.Context, sampleId int)
 }
 
 type SampleOutputPort interface {
@@ -15,5 +16,5 @@ type SampleOutputPort interface {
 }
 
 type SampleRepository interface {
-	GetSampleById(ctx context.Context, sampleId int) (*entity.Sample, error)
+	GetSampleById(c *gin.Context, sampleId int) (*entity.Sample, error)
 }
